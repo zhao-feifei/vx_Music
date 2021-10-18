@@ -37,4 +37,50 @@
       <text>直播</text>
     </view>
   </view>
+
+  <!-- 推荐歌曲 -->
+  <view class="recommendContainer">
+    <!-- 头部区域 -->
+    <view class="header">
+      <view class="title">
+        推荐歌曲
+      </view>
+      <view class="nav">
+        <!-- <text>为你精心推荐</text> -->
+        <text class="more">查看更多</text>
+      </view>
+    </view>
+    <!-- 内容区域 -->
+    <scroll-view class="recommendScroll" enable-flex scroll-x>
+      <view class="scrollItem">
+        <image src="/static/images/mv.jpg"></image>
+        <text>黄老板全新数字专辑</text>
+      </view>
+      <view class="scrollItem">
+        <image src="/static/images/mv.jpg"></image>
+        <text>黄老板全新数字专辑</text>
+      </view>
+      <view class="scrollItem">
+        <image src="/static/images/mv.jpg"></image>
+        <text>黄老板全新数字专辑</text>
+      </view>
+      <view class="scrollItem">
+        <image src="/static/images/mv.jpg"></image>
+        <text>黄老板全新数字专辑</text>
+      </view>
+      <view class="scrollItem">
+        <image src="/static/images/mv.jpg"></image>
+        <text>黄老板全新数字专辑</text>
+      </view>
+      <view class="scrollItem">
+        <image src="/static/images/mv.jpg"></image>
+        <text>黄老板全新数字专辑</text>
+      </view>
+      <view class="scrollItem">
+        <image src="/static/images/mv.jpg"></image>
+        <text>黄老板全新数字专辑</text>
+      </view>
+
+    </scroll-view>
+  </view>
 </view>

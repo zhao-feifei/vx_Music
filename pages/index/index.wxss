@@ -36,3 +36,45 @@
 .navItem text{
   font-size: 26rpx;
 }
+
+/* 推荐歌曲 */
+.recommendContainer{
+  padding: 20rpx;
+}
+
+.recommendContainer .header .title{
+  font-size: 28rpx;
+  color: #333;
+}
+
+.recommendContainer .header .more{
+  float: right;
+  border: 1rpx solid #333;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.recommendScroll{
+  display: flex;
+}
+
+.scrollItem {
+  width: 200rpx;
+  margin-right: 20rpx;
+}
+
+.scrollItem image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 20rpx;
+}
+.scrollItem text{
+  font-size: 26rpx;
+  /* 多行文本溢出，省略号代替 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
