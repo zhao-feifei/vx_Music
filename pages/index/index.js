@@ -4,12 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
+  banners:[]//轮播图数据
   },
   // 事件处理函数
   bindViewTap() {
@@ -18,11 +13,22 @@ Page({
     })
   },
   onLoad() {
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
-    }
+    //请求轮播图数据
+    wx.request({
+      url: 'http://localhost:3000/banner',
+      data: {type:2},
+      success: (res) => {
+        this.setData({
+          banners:res.data.banners
+        })
+        // console.log(this.banners);
+      },
+      fail: (err) => {
+       console.log(err);
+      },
+      
+    })
+   
   },
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗

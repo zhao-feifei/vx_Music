@@ -1,17 +1,8 @@
 <view class="indexContainer">
   <!-- 轮播图区域 -->
   <swiper class="banners" indicator-dots="true" indicator-color="ivory" indicator-active-color="#d43c33">
-    <swiper-item>
-      <image src="../../static/images/hlb.jpg"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="../../static/images/hlb.jpg"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="../../static/images/hlb.jpg"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="../../static/images/hlb.jpg"></image>
+    <swiper-item wx:for="{{banners}}" wx:key="bannerId" wx:for-item="bannerItem">
+      <image src="{{bannerItem.pic}}"></image>
     </swiper-item>
   </swiper>
   <!-- 导航区域 -->
