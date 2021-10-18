@@ -4,7 +4,6 @@
     "pages/logs/logs"
   ],
   "window":{
-    "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#d43c33",
     "navigationBarTitleText": "云音乐",
     "navigationBarTextStyle":"white"
