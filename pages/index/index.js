@@ -1,10 +1,11 @@
 // index.js
 // 获取应用实例
+import request from '../../utils/request'
 const app = getApp()
 
 Page({
   data: {
-  banners:[]//轮播图数据
+    banners: [] //轮播图数据
   },
   // 事件处理函数
   bindViewTap() {
@@ -13,23 +14,20 @@ Page({
     })
   },
   onLoad() {
-    //请求轮播图数据
-    wx.request({
-      url: 'http://localhost:3000/banner',
-      data: {type:2},
-      success: (res) => {
-        this.setData({
-          banners:res.data.banners
-        })
-        // console.log(this.banners);
-      },
-      fail: (err) => {
-       console.log(err);
-      },
-      
-    })
-   
+    this.getInitData()
   },
+  //封装初始化数据函数
+  async getInitData() {
+    //请求轮播图数据
+    let result = await request('http://localhost:3000/banner', {
+      type: 2
+    })
+    //修改banners数据
+    this.setData({
+      banners: result.banners
+    })
+  },
+
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getUserProfile({
