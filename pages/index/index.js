@@ -5,7 +5,8 @@ const app = getApp()
 
 Page({
   data: {
-    banners: [] //轮播图数据
+    banners: [], //轮播图数据
+    recommendList: [] //推荐歌曲数据
   },
   // 事件处理函数
   bindViewTap() {
@@ -19,13 +20,23 @@ Page({
   //封装初始化数据函数
   async getInitData() {
     //请求轮播图数据
-    let result = await request('http://localhost:3000/banner', {
+    let result = await request('/banner', {
       type: 2
     })
     //修改banners数据
     this.setData({
       banners: result.banners
     })
+
+    //推荐歌曲数据
+    result = await request('/personalized', {
+      type: 2
+    })
+    //修改recommendList数据
+    this.setData({
+      recommendList: result.result
+    })
+    console.log(result.result);
   },
 
   getUserProfile(e) {

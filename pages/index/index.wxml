@@ -43,35 +43,10 @@
     </view>
     <!-- 内容区域 -->
     <scroll-view class="recommendScroll" enable-flex scroll-x>
-      <view class="scrollItem">
-        <image src="/static/images/mv.jpg"></image>
-        <text>黄老板全新数字专辑</text>
+      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id">
+        <image src="{{item.picUrl}}"></image>
+        <text>{{item.name}}</text>
       </view>
-      <view class="scrollItem">
-        <image src="/static/images/mv.jpg"></image>
-        <text>黄老板全新数字专辑</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/mv.jpg"></image>
-        <text>黄老板全新数字专辑</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/mv.jpg"></image>
-        <text>黄老板全新数字专辑</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/mv.jpg"></image>
-        <text>黄老板全新数字专辑</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/mv.jpg"></image>
-        <text>黄老板全新数字专辑</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/mv.jpg"></image>
-        <text>黄老板全新数字专辑</text>
-      </view>
-
     </scroll-view>
   </view>
 </view>
