@@ -1,0 +1,9 @@
+<view class="header">
+    <view class="title">
+        {{title}}
+    </view>
+    <view class="nav">
+        <!-- <text>为你精心推荐</text> -->
+        <text class="more">{{nav}}</text>
+    </view>
+</view>

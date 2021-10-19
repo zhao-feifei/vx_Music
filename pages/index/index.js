@@ -36,7 +36,7 @@ Page({
     this.setData({
       recommendList: result.result
     })
-    console.log(result.result);
+    // console.log(result.result);
   },
 
   getUserProfile(e) {

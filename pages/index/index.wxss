@@ -42,22 +42,11 @@
   padding: 20rpx;
 }
 
-.recommendContainer .header .title{
-  font-size: 28rpx;
-  color: #333;
-}
 
-.recommendContainer .header .more{
-  float: right;
-  border: 1rpx solid #333;
-  padding: 10rpx 20rpx;
-  border-radius: 20rpx;
-  font-size: 24rpx;
-  margin-bottom: 15rpx;
-}
 
 .recommendScroll{
   display: flex;
+  height: 300rpx;
 }
 
 .scrollItem {
@@ -78,4 +67,9 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+/* 排行榜区域 */
+.topList{
+  padding: 20rpx;
 }
