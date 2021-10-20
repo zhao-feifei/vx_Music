@@ -1,4 +1,4 @@
-// pages/video/vide0.js
+// pages/video/video.js
 Page({
 
     /**
