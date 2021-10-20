@@ -44,66 +44,16 @@
   <!-- 排行榜区域 -->
   <view class="topList">
     <!-- 头部区域 -->
-    <NavHeader title="热歌排行" nav="查看更多"></NavHeader>
+    <NavHeader title="排行榜" nav="查看更多"></NavHeader>
     <!-- 内容区域 -->
    <swiper class="topListSwiper" next-margin="50rpx">
-     <swiper-item>
-       <view class="swiperItem">
-        <view class="title">飙升榜</view>
-        <view class="musicItem">
-          <image src="../../static/images/mv.jpg"></image>
-          <text class="order">1</text>
-          <text>光辉岁月</text>
-        </view>
-        <view class="musicItem">
-          <image src="../../static/images/mv.jpg"></image>
-          <text class="order">2</text>
-          <text>光辉岁月</text>
-        </view>
-        <view class="musicItem">
-          <image src="../../static/images/mv.jpg"></image>
-          <text class="order">3</text>
-          <text>光辉岁月</text>
-        </view>
-       </view>
-     </swiper-item>
-     <swiper-item>
-       <view class="swiperItem">
-        <view class="title">飙升榜</view>
-        <view class="musicItem">
-          <image src="../../static/images/mv.jpg"></image>
-          <text class="order">1</text>
-          <text>光辉岁月</text>
-        </view>
-        <view class="musicItem">
-          <image src="../../static/images/mv.jpg"></image>
-          <text class="order">2</text>
-          <text>光辉岁月</text>
-        </view>
-        <view class="musicItem">
-          <image src="../../static/images/mv.jpg"></image>
-          <text class="order">3</text>
-          <text>光辉岁月</text>
-        </view>
-       </view>
-     </swiper-item>
-     <swiper-item>
-       <view class="swiperItem">
-        <view class="title">飙升榜</view>
-        <view class="musicItem">
-          <image src="../../static/images/mv.jpg"></image>
-          <text class="order">1</text>
-          <text>光辉岁月</text>
-        </view>
-        <view class="musicItem">
-          <image src="../../static/images/mv.jpg"></image>
-          <text class="order">2</text>
-          <text>光辉岁月</text>
-        </view>
-        <view class="musicItem">
-          <image src="../../static/images/mv.jpg"></image>
-          <text class="order">3</text>
-          <text>光辉岁月</text>
+     <swiper-item wx:for="{{topList}}" wx:key="name">
+       <view class="swiperItem" >
+        <view class="title">{{item.name}}</view>
+        <view class="musicItem" wx:for="{{item.tracks}}" wx:key="id" wx:for-item="musicItem">
+          <image src="{{musicItem.al.picUrl}}"></image>
+          <text class="order">{{index+1}}</text>
+          <text>{{musicItem.name}}</text>
         </view>
        </view>
      </swiper-item>

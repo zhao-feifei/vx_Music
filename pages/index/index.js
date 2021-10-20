@@ -6,7 +6,8 @@ const app = getApp()
 Page({
   data: {
     banners: [], //轮播图数据
-    recommendList: [] //推荐歌曲数据
+    recommendList: [], //推荐歌曲数据
+    topList:[]//排行榜数据
   },
   // 事件处理函数
   bindViewTap() {
@@ -36,7 +37,18 @@ Page({
     this.setData({
       recommendList: result.result
     })
-    // console.log(result.result);
+    //获取排行榜数据
+    let index=0
+    let resultArr=[]
+    while(index<5){
+      result=await request('/top/list',{idx:index++})
+      resultArr.push({name:result.playlist.name,tracks:result.playlist.tracks})
+      this.setData({
+        topList:resultArr
+      })
+    }
+  
+    
   },
 
   getUserProfile(e) {
