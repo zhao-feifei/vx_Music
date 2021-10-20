@@ -9,7 +9,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        coverTransform:'translateY(0)'
+        coverTransform:'translateY(0)',
+        coverTranstion:''
     },
 
     /**
@@ -20,20 +21,34 @@ Page({
     },
     //手指点击事件
     handleTouchStart(event) {
+        //清除之前的过渡效果
+        this.setData({
+         
+            coverTranstion:''
+        })
         startY = event.touches[0].clientY
     },
     //手指移动事件
     handleTouchMove(event) {
         moveY = event.touches[0].clientY
         moveDistance = moveY - startY
-        console.log(moveDistance);
+        // console.log(moveDistance);
+        if(moveDistance<0){
+            return
+        }
+        if(moveDistance>=80){
+            moveDistance=80
+        }
         this.setData({
             coverTransform:`translateY(${moveDistance}rpx)`
         })
     },
     //手指离开事件
     handleTouchEnd() {
-
+        this.setData({
+            coverTransform:`translateY(0)`,
+            coverTranstion:'transform 1s linear'
+        })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

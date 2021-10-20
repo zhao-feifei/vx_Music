@@ -27,7 +27,7 @@
 
 
     <view class="cover-container" bindtouchstart="handleTouchStart" bindtouchmove="handleTouchMove"
-        bindtouchend="handleTouchEnd" style="transform: {{coverTransform}};">
+        bindtouchend="handleTouchEnd" style="transform: {{coverTransform}};transition: {{coverTranstion}};">
         <image class="arc" src="/static/images/personal/arc.png"></image>
         <!-- 个人中心导航 -->
         <view class="nav-section">
