@@ -1,11 +1,15 @@
+
 // pages/personal/personal.js
+let startY = 0 //手指起始坐标
+let moveY = 0 //手指移动实时坐标
+let moveDistance = 0 //手指移动的距离
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        coverTransform:'translateY(0)'
     },
 
     /**
@@ -14,7 +18,23 @@ Page({
     onLoad: function (options) {
 
     },
+    //手指点击事件
+    handleTouchStart(event) {
+        startY = event.touches[0].clientY
+    },
+    //手指移动事件
+    handleTouchMove(event) {
+        moveY = event.touches[0].clientY
+        moveDistance = moveY - startY
+        console.log(moveDistance);
+        this.setData({
+            coverTransform:`translateY(${moveDistance}rpx)`
+        })
+    },
+    //手指离开事件
+    handleTouchEnd() {
 
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
