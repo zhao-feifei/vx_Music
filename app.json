@@ -1,13 +1,36 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/video/vide0",
+    "pages/personal/personal"
   ],
-  "window":{
+  "window": {
     "navigationBarBackgroundColor": "#d43c33",
     "navigationBarTitleText": "云音乐",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#d43c33",
+    "backgroundColor": "#fff",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "/static/images/tabs/tab-home.png",
+      "selectedIconPath": "/static/images/tabs/tab-home-current.png"
+    }, {
+      "pagePath": "pages/index/index",
+      "text": "视频",
+      "iconPath": "/static/images/tabs/select.png",
+      "selectedIconPath": "/static/images/tabs/selected.png"
+    }, {
+      "pagePath": "pages/index/index",
+      "text": "个人中心",
+      "iconPath": "/static/images/tabs/tab-my.png",
+      "selectedIconPath": "/static/images/tabs/tab-my-current.png"
+    }]
+  }
 }
