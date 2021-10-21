@@ -1,4 +1,5 @@
 
+
 // pages/personal/personal.js
 let startY = 0 //手指起始坐标
 let moveY = 0 //手指移动实时坐标
@@ -10,14 +11,20 @@ Page({
      */
     data: {
         coverTransform:'translateY(0)',
-        coverTranstion:''
+        coverTranstion:'',
+        userInfo:{}//用户信息
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        let userInfo=wx.getStorageSync('userInfo')
+        if(userInfo){
+            this.setData({
+                userInfo
+            })
+        }
     },
     //手指点击事件
     handleTouchStart(event) {
@@ -52,9 +59,11 @@ Page({
     },
     //跳转至登录页面
     toLogin(){
+        if(this.data.userInfo.nickname){
+            return
+        }
         wx.navigateTo({
-          url: '/pages/login/login',
-         
+          url: '/pages/login/login',        
         })
     },
     /**

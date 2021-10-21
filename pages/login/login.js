@@ -64,6 +64,13 @@ Page({
                 icon: "success",
             })
             console.log(result);
+            wx.setStorageSync('userInfo', result.profile)
+            // wx.navigateBack({
+            //   delta: 0,            
+            // })
+            wx.reLaunch({
+                url: '/pages/personal/personal',
+            })
         }else if(result.code==400){
             wx.showToast({
                 title: '手机号错误!',
