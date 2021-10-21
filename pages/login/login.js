@@ -1,11 +1,12 @@
-// pages/logs/logs.js
+// pages/login/login.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        phone:'',//手机号
+        password:''//密码
     },
 
     /**
@@ -14,6 +15,15 @@ Page({
     onLoad: function (options) {
 
     },
+
+    handleInput(event){
+        console.log(event);
+        let type=event.currentTarget.id
+        this.setData({
+            [type]:event.detail.value
+        })
+    },
+    
 
     /**
      * 生命周期函数--监听页面初次渲染完成
