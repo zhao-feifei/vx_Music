@@ -212,3 +212,19 @@
     float: right;
   }
   
+
+  /* 最近播放区域 */
+  .recentScroll{
+    height: 200rpx;
+    display: flex;
+  }
+
+  .recentItem{
+    margin-right: 20px;
+  }
+
+  .recentItem image{
+    height: 200rpx;
+    width: 200rpx;
+    border-radius: 10rpx;
+  }

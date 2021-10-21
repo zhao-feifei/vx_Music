@@ -1,5 +1,5 @@
 
-
+import request from '../../utils/request'
 // pages/personal/personal.js
 let startY = 0 //手指起始坐标
 let moveY = 0 //手指移动实时坐标
@@ -12,7 +12,8 @@ Page({
     data: {
         coverTransform:'translateY(0)',
         coverTranstion:'',
-        userInfo:{}//用户信息
+        userInfo:{},//用户信息
+        recentPlayList:[]//最近播放
     },
 
     /**
@@ -25,7 +26,25 @@ Page({
                 userInfo
             })
         }
+        this.getRecentPlayData(userInfo.userId)
     },
+
+    //获取用户播放记录的函数
+   async getRecentPlayData(userId){
+        let result= await request('/user/record',{uid:userId,type:1})
+        // console.log(result);
+        let index=0
+        //这里给数组中的每一项加入了一个id，方便后续遍历的时候设置id为Key值
+        let recentPlayList=result.weekData.slice(0,10).map(item=>{
+            item.id=index++
+            return item
+        })
+        console.log(recentPlayList);
+        this.setData({
+            recentPlayList
+        })
+    },
+
     //手指点击事件
     handleTouchStart(event) {
         //清除之前的过渡效果
