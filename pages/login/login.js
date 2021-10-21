@@ -1,12 +1,14 @@
 // pages/login/login.js
+
+import request from  '../../utils/request'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        phone:'',//手机号
-        password:''//密码
+        phone: '', //手机号
+        password: '' //密码
     },
 
     /**
@@ -16,14 +18,70 @@ Page({
 
     },
 
-    handleInput(event){
+    handleInput(event) {
         console.log(event);
-        let type=event.currentTarget.id
+        let type = event.currentTarget.id
         this.setData({
-            [type]:event.detail.value
+            [type]: event.detail.value
         })
     },
-    
+    //登录按钮绑定事件
+  async  login() {
+        //前端验证
+        let {
+            phone,
+            password
+        } = this.data
+        //手机号与密码验证
+        if (!phone) {
+            wx.showToast({
+                title: '手机号不能为空！',
+                icon: "error",
+            })
+            return
+        }
+        let phoneReg = /^[1][3,4,5,7,8][0-9]{9}$/
+        if (!phoneReg.test(phone)) {
+            wx.showToast({
+                title: '手机号格式错误！',
+                icon: "error",
+            })
+            return
+        }
+        if (!password) {
+            wx.showToast({
+                title: '密码不能为空！',
+                icon: "error",
+            })
+            return
+        }
+
+        //后端验证
+        let result=await request("/login/cellphone",{phone,password})
+        if(result.code==200){
+            wx.showToast({
+                title: '登陆成功!',
+                icon: "success",
+            })
+            console.log(result);
+        }else if(result.code==400){
+            wx.showToast({
+                title: '手机号错误!',
+                icon: "error",
+            })
+        }else if(result.code==502){
+            wx.showToast({
+                title: '密码错误!',
+                icon: "error",
+            })
+        }else{
+            wx.showToast({
+                title: '网络繁忙!',
+                icon: "error",
+            })
+        }
+    },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
