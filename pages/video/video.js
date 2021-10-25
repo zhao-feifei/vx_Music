@@ -1,22 +1,38 @@
 // pages/video/video.js
+import request from '../../utils/request'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        videoGroupList: [], //导航标签数据
+        navId: ''
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        add(){
-            
-        }
+        this.getVideoGroupList()
     },
-
+    //获取导航标签数据
+    async getVideoGroupList() {
+        let result = await request('/video/group/list')
+        this.setData({
+            videoGroupList: result.data.slice(0, 14),
+            navId: result.data[0].id
+        })
+    },
+    //导航切换点击事件
+    changeNav(event){
+        let navId=event.currentTarget.dataset.id
+        
+        //修改navId
+        this.setData({
+            navId:navId>>>0
+        })
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

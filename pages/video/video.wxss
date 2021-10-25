@@ -1,4 +1,4 @@
-/* pages/video/video.wxss */
+
 .videoContainer .header {
     display: flex;
     padding: 10rpx;

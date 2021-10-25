@@ -12,11 +12,9 @@
   <scroll-view
       scroll-x
       class="navScroll"
-      enable-flex
-      scroll-into-view="{{'scroll' + navId}}"
-      scroll-with-animation
+      enable-flex 
   >
-    <view id="{{'scroll' + item.id}}" class="navItem" wx:for="{{videoGroupList}}" wx:key="id">
+    <view  class="navItem" wx:for="{{videoGroupList}}" wx:key="id">
       <view class="navContent {{navId === item.id?'active': ''}}" bindtap="changeNav" id="{{item.id}}" data-id="{{item.id}}">
         {{item.name}}
       </view>
