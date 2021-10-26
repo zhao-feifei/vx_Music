@@ -8,7 +8,8 @@ Page({
     data: {
         videoGroupList: [], //导航标签数据
         navId: '', //导航标签id
-        videoList: [] //视频列表
+        videoList: [], //视频列表
+        videoId: '' //video标识
     },
 
     /**
@@ -54,7 +55,7 @@ Page({
         //修改navId
         this.setData({
             navId: navId >>> 0,
-            videoList:[]
+            videoList: []
         })
         //显示正在加载
         wx.showLoading({
@@ -65,12 +66,18 @@ Page({
     },
 
     //点击播放视频的回调
-    handlePlay(event){
-        let vid=event.currentTarget.id
-        this.vid!==vid&&this.videoContext&&this.videoContext.stop()
-        this.vid=vid
-         this.videoContext=wx.createVideoContext(vid)
-        
+    handlePlay(event) {
+        let vid = event.currentTarget.id
+        //解决多个视频同时播放
+        // this.vid !== vid && this.videoContext && this.videoContext.stop()
+        this.vid = vid
+        this.setData({
+            videoId: vid
+        })
+        this.videoContext = wx.createVideoContext(vid)
+        //播放当前视频
+        this.videoContext.play()
+
     },
 
 
