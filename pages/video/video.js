@@ -63,6 +63,17 @@ Page({
         //获取视频列表数据
         this.getVideoList(this.data.navId)
     },
+
+    //点击播放视频的回调
+    handlePlay(event){
+        let vid=event.currentTarget.id
+        this.vid!==vid&&this.videoContext&&this.videoContext.stop()
+        this.vid=vid
+         this.videoContext=wx.createVideoContext(vid)
+        
+    },
+
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
