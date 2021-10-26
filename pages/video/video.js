@@ -7,7 +7,8 @@ Page({
      */
     data: {
         videoGroupList: [], //导航标签数据
-        navId: ''
+        navId: '', //导航标签id
+        videoList: [] //视频列表
     },
 
     /**
@@ -23,14 +24,34 @@ Page({
             videoGroupList: result.data.slice(0, 14),
             navId: result.data[0].id
         })
+        this.getVideoList(this.data.navId)
     },
+
+    //获取视频列表
+    async getVideoList(navId) {
+        let videoListData = await request('/video/group', {
+            id: navId
+        })
+        // console.log(videoListData);
+
+        //为数组每一项增加一个索引值，方便后面遍历作为key值
+        let index = 0
+        let videoList = videoListData.datas.map(item => {
+            item.id = index++
+            return item
+        })
+        this.setData({
+            videoList
+        })
+    },
+
     //导航切换点击事件
-    changeNav(event){
-        let navId=event.currentTarget.dataset.id
-        
+    changeNav(event) {
+        let navId = event.currentTarget.dataset.id
+
         //修改navId
         this.setData({
-            navId:navId>>>0
+            navId: navId >>> 0
         })
     },
     /**

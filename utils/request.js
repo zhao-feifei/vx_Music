@@ -6,7 +6,14 @@ export default (url, data = {}, method = 'GET') => {
       url:config.host+url,
       data,
       method,
+      header:{
+        cookie:wx.getStorageSync('cookies')?wx.getStorageSync('cookies').toString():''
+      },
       success: (res) => {
+        // console.log(res)
+        if(data.isLogin){
+          wx.setStorageSync('cookies', res.cookies)
+        }
         resolve(res.data)
       },
       fail: (err) => {
