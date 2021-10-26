@@ -40,6 +40,8 @@ Page({
             item.id = index++
             return item
         })
+        //隐藏正在加载提示
+        wx.hideLoading()
         this.setData({
             videoList
         })
@@ -51,8 +53,15 @@ Page({
 
         //修改navId
         this.setData({
-            navId: navId >>> 0
+            navId: navId >>> 0,
+            videoList:[]
         })
+        //显示正在加载
+        wx.showLoading({
+            title: '正在加载',
+        })
+        //获取视频列表数据
+        this.getVideoList(this.data.navId)
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
