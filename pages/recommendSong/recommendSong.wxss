@@ -1,0 +1,73 @@
+.header {
+    position: relative;
+    width: 100%;
+    height: 300rpx;
+}
+
+.header image {
+    width: 100%;
+    height: 100%;
+}
+
+.date{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -40rpx;
+    margin-left: -140rpx;
+    width: 300rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    color: #fff;
+}
+
+.date {
+    font-size: 38rpx;
+}
+
+
+.listContainer{
+    position: relative;
+    top: -20rpx;
+    padding: 20rpx;
+    background: #fff;
+    border-radius: 30rpx;
+}
+
+.listHeader .more{
+    float: right;
+}
+
+/* 内容区域 */
+.listItem{
+    display: flex;
+}
+
+.listItem image{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 10rpx;
+
+}
+
+.listItem .musicInfo{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20rpx;
+}
+
+.listItem .musicInfo text{
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+}
+
+.iconfont{
+    position: absolute;
+    right: 0;
+    width: 80rpx;
+    height: 80rpx;
+    text-align: right;
+    line-height: 80rpx;
+}

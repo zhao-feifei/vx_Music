@@ -1,0 +1,30 @@
+<view class="recommendContainer">
+    <view class="header">
+        <image src="../../static/images/recommendSong/recommendSong.jpg"></image>
+        <view class="date">
+            <text class="day">{{month}}/</text>
+            <text class="month">{{day}}</text>
+        </view>
+    </view>
+
+
+    <!-- 推荐内容区域 -->
+    <view class="listContainer">
+        <view class="listHeader">
+            <text>播放全部</text>
+            <text class="more">多选</text>
+        </view>
+
+        <!-- 内容区域 -->
+        <scroll-view scroll-y class="listScroll">
+            <view class="listItem">
+                <image src="../../static/images/mv.jpg"></image>
+                <view class="musicInfo">
+                    <text>光辉岁月</text>
+                    <text>beyond</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+        </scroll-view>
+    </view>
+</view>

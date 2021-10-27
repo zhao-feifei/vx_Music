@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/recommendSong/recommendSong",
         "pages/video/video",
         "pages/index/index",
         "pages/personal/personal",
@@ -13,7 +14,6 @@
     "style": "v2",
     "sitemapLocation": "sitemap.json",
     "tabBar": {
-        
         "color": "#333",
         "selectedColor": "#d43c33",
         "backgroundColor": "#fff",
@@ -25,13 +25,13 @@
                 "selectedIconPath": "/static/images/tabs/tab-home-current.png"
             },
             {
-                "pagePath":"pages/video/video",
+                "pagePath": "pages/video/video",
                 "text": "视频",
                 "iconPath": "/static/images/tabs/select.png",
                 "selectedIconPath": "/static/images/tabs/selected.png"
             },
             {
-                "pagePath":  "pages/personal/personal",
+                "pagePath": "pages/personal/personal",
                 "text": "个人中心",
                 "iconPath": "/static/images/tabs/tab-my.png",
                 "selectedIconPath": "/static/images/tabs/tab-my-current.png"
