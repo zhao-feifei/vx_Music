@@ -110,6 +110,16 @@ Page({
         })
     },
 
+    //视频播放结束的回调
+    handleEnded(event){
+        let {videoUpdateTime}=this.data
+        //将当前视频的播放记录移除掉
+        videoUpdateTime.splice(videoUpdateTime.findIndex(item=>item.vid===event.currentTarget.id),1)
+        this.setData({
+            videoUpdateTime
+        })
+    },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
