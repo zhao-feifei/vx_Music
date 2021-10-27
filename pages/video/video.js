@@ -9,7 +9,8 @@ Page({
         videoGroupList: [], //导航标签数据
         navId: '', //导航标签id
         videoList: [], //视频列表
-        videoId: '' //video标识
+        videoId: '', //video标识
+        videoUpdateTime:[]//记录实时播放的时长
     },
 
     /**
@@ -75,9 +76,38 @@ Page({
             videoId: vid
         })
         this.videoContext = wx.createVideoContext(vid)
+        //判断当前视频是否有播放记录
+        let {videoUpdateTime}=this.data
+        //查找一下当前视频是否已经有播放记录
+        let videoItem=videoUpdateTime.find(item=>item.vid===vid)
+        //如果找到了  跳转至之前的播放位置
+        if(videoItem){
+            this.videoContext.seek(videoItem.currentTime)
+        }
+
         //播放当前视频
         this.videoContext.play()
-
+    },
+    //视频播放进度实时变化的回调
+    handleTimeUpdate(event){
+        // console.log(event);
+        //定义一个存储当前视频id和播放时间的对象
+        let videoTimeObj={vid:event.currentTarget.id,currentTime:event.detail.currentTime}
+        //从数据中结构出videoUpdateTime数组
+        let {videoUpdateTime} =this.data
+        //查找数组中是否已经有过记录
+        let videoItem=videoUpdateTime.find(item=>item.vid===event.currentTarget.id)
+        if(videoItem){  
+            //如果找到了   更新时间即可
+            videoItem.currentTime=event.detail.currentTime
+        }else{
+            //如果没找到直接push进数组
+            videoUpdateTime.push(videoTimeObj)
+        }
+        //需要重新更新数组
+        this.setData({
+            videoUpdateTime
+        })
     },
 
 
