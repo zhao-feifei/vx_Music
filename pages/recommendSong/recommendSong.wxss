@@ -39,9 +39,21 @@
     float: right;
 }
 
+.listHeader{
+    height: 80rpx;
+    line-height: 80rpx;
+}
 /* 内容区域 */
+
+
+.listScroll{
+    height: calc(100vh-380rpx);
+}
+
 .listItem{
     display: flex;
+    height: 80rpx;
+    margin-bottom: 20rpx;
 }
 
 .listItem image{
@@ -61,6 +73,10 @@
     height: 40rpx;
     line-height: 40rpx;
     font-size: 26rpx;
+    max-width: 500rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .iconfont{

@@ -17,11 +17,11 @@
 
         <!-- 内容区域 -->
         <scroll-view scroll-y class="listScroll">
-            <view class="listItem">
-                <image src="../../static/images/mv.jpg"></image>
+            <view class="listItem" wx:for="{{recommendList}}" wx:key="id">
+                <image src="{{item.album.picUrl}}"></image>
                 <view class="musicInfo">
-                    <text>光辉岁月</text>
-                    <text>beyond</text>
+                    <text>{{item.name}}</text>
+                    <text>{{item.artists[0].name}}</text>
                 </view>
                 <text class="iconfont icon-gengduo"></text>
             </view>
