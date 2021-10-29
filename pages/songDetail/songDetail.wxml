@@ -1,7 +1,7 @@
 <view class="songContainer">
     <view class="author">beyond</view>
     <view class="circle"></view>
-    <image class="needle" src="/static/images/song/needle.png"></image>
+    <image class="needle {{isPlay&&'needloRotate'}}" src="/static/images/song/needle.png"></image>
     <view class="discContainer">
         <image class="disc" src="/static/images/song/disc.png"></image>
         <!-- 歌曲封面图 -->

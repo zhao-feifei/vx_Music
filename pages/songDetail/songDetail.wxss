@@ -16,7 +16,7 @@
     background: #fff;
 }
 
-/* 遥感样式 */
+/* 摇杆样式 */
 .needle{
     position: relative;
     z-index: 99;
@@ -24,6 +24,13 @@
     left: 60rpx;
     width: 192rpx;
     height: 274rpx;
+    transform-origin: 40rpx 0;
+    transform: rotate(-20deg);
+    transition: 1s;
+}
+
+.needloRotate{
+    transform: rotate(0deg);
 }
 
 /* 磁盘 */
