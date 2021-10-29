@@ -20,7 +20,6 @@ Page({
             day:new Date().getDate(),
             month:new Date().getMonth()+1
         })
-        console.log('222222');
         this.getRecommendList()
       
     },
@@ -28,8 +27,6 @@ Page({
     //获取每日推荐的功能函数
    async getRecommendList(){
         let recommendListData=await request('/recommend/songs')
-        console.log('111111');
-        console.log(recommendListData);
         // 更新数据
         this.setData({
             recommendList:recommendListData.recommend
@@ -37,6 +34,15 @@ Page({
        
     },
 
+    //跳转至歌曲详情的回调
+    toSongDetail(event){
+        let song=event.currentTarget.dataset.song
+        console.log(song);
+        wx.navigateTo({
+            //注意这里为啥要转换成json
+          url: '/pages/songDetail/songDetail?song='+JSON.stringify(song),
+        })
+    },
 
 
     /**

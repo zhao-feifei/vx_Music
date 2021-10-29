@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/songDetail/songDetail",
         "pages/recommendSong/recommendSong",
+        "pages/songDetail/songDetail",
         "pages/video/video",
         "pages/index/index",
         "pages/personal/personal",
@@ -19,8 +19,7 @@
         "color": "#333",
         "selectedColor": "#d43c33",
         "backgroundColor": "#fff",
-        "list": [
-            {
+        "list": [{
                 "pagePath": "pages/index/index",
                 "text": "首页",
                 "iconPath": "/static/images/tabs/tab-home.png",
