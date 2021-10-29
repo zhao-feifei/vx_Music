@@ -29,6 +29,24 @@
     transition: 1s;
 }
 
+.disAnimation{
+    /* 动画属性 */
+    animation: disc 4s linear infinite;
+    animation-delay: 1s;
+}
+
+/* 动画帧 */
+@keyframes disc{
+    from{
+        transform: rotate(0deg);
+    }
+
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
 .needloRotate{
     transform: rotate(0deg);
 }
