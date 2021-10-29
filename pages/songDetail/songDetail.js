@@ -12,9 +12,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        
     },
 
+
+    //点击播放/暂停的回调
+    handleMusicPlay(){
+       let isPlay=!this.data.isPlay
+       this.setData({
+           isPlay
+       })
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

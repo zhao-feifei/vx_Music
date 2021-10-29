@@ -110,6 +110,7 @@ Page({
         this.setData({
             videoUpdateTime
         })
+        
     },
 
     //视频播放结束的回调
