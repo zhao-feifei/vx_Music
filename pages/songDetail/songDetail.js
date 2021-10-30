@@ -1,4 +1,7 @@
 import request from '../../utils/request'
+
+
+let appInstance=getApp()
 Page({
 
     /**
@@ -20,6 +23,15 @@ Page({
             musicId
         })
         this.getmusicInfo(musicId)
+
+        //判断当前页面的音乐是否在播放
+        if(appInstance.globalData.isMusicPlay&&appInstance.globalData.musicId===musicId){
+            //音乐在播放,修改播放状态为true
+            this.setData({
+                isPlay:true
+            })
+
+        }
     },
 
 
@@ -48,8 +60,14 @@ Page({
             let musicLink=musicLinkData.data[0].url
             backgroundAudioManager.src=musicLink
             backgroundAudioManager.title=this.data.song.name
+            //修改全局的播放状态
+            appInstance.globalData.isMusicPlay=true
+            appInstance.globalData.musicId=musicId
         } else {
             backgroundAudioManager.pause()
+             //修改全局的播放状态
+             appInstance.globalData.isMusicPlay=false
+
         }
     },
 
