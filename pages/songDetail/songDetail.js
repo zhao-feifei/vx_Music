@@ -38,19 +38,18 @@ Page({
 
     //控制音乐的播放与暂停
     async musicControl(isPlay, musicId) {
+          //生成背景音频实例
+          let backgroundAudioManager=wx.getBackgroundAudioManager()
         if (isPlay) {
             // 获取音乐播放地址
             let musicLinkData = await request('/song/url', {
                 id: musicId
             })
             let musicLink=musicLinkData.data[0].url
-            console.log(musicLink);
-            //生成背景音频实例
-            let backgroundAudioManager=wx.getBackgroundAudioManager()
             backgroundAudioManager.src=musicLink
             backgroundAudioManager.title=this.data.song.name
         } else {
-
+            backgroundAudioManager.pause()
         }
     },
 
