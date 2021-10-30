@@ -5,39 +5,68 @@ Page({
      * 页面的初始数据
      */
     data: {
-        isPlay:false, //标识是否播放
-        song:{} //歌曲详情对象
+        isPlay: false, //标识是否播放
+        song: {}, //歌曲详情对象
+        musicId: '' //音乐标识
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let musicId=options.musicId
-       this.getmusicInfo(musicId)
+        let musicId = options.musicId
+        //保存音乐id，获取播放音频时候用到
+        this.setData({
+            musicId
+        })
+        this.getmusicInfo(musicId)
     },
 
 
     //点击播放/暂停的回调
-    handleMusicPlay(){
-       let isPlay=!this.data.isPlay
-       this.setData({
-           isPlay
-       })
+    handleMusicPlay() {
+        let isPlay = !this.data.isPlay
+        this.setData({
+            isPlay
+        })
+        let {
+            musicId
+        } = this.data
+        this.musicControl(isPlay, musicId)
+
+    },
+
+    //控制音乐的播放与暂停
+    async musicControl(isPlay, musicId) {
+        if (isPlay) {
+            // 获取音乐播放地址
+            let musicLinkData = await request('/song/url', {
+                id: musicId
+            })
+            let musicLink=musicLinkData.data[0].url
+            console.log(musicLink);
+            //生成背景音频实例
+            let backgroundAudioManager=wx.getBackgroundAudioManager()
+            backgroundAudioManager.src=musicLink
+            backgroundAudioManager.title=this.data.song.name
+        } else {
+
+        }
     },
 
 
     //根据传过来的id获取音乐详情
-  async  getmusicInfo(musicId){
-     let songData= await  request('/song/detail',{ids:musicId})
-     console.log(songData);
-     this.setData({
-         song:songData.songs[0]
-     })
-     //动态修改窗口标题
-     wx.setNavigationBarTitle({
-       title: this.data.song.name,
-     })
+    async getmusicInfo(musicId) {
+        let songData = await request('/song/detail', {
+            ids: musicId
+        })
+        this.setData({
+            song: songData.songs[0]
+        })
+        //动态修改窗口标题
+        wx.setNavigationBarTitle({
+            title: this.data.song.name,
+        })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
