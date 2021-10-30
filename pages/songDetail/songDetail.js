@@ -1,6 +1,5 @@
 import request from '../../utils/request'
-
-
+import PubSub from 'pubsub-js'
 let appInstance=getApp()
 Page({
 
@@ -71,7 +70,6 @@ Page({
         }
     },
 
-
     //根据传过来的id获取音乐详情
     async getmusicInfo(musicId) {
         let songData = await request('/song/detail', {
@@ -85,6 +83,15 @@ Page({
             title: this.data.song.name,
         })
     },
+
+    //点击切换歌曲的回调
+    handleSwitch(event){
+        let type=event.currentTarget.id
+        //使用发布订阅将点击切换的类型发给recommend页面
+        PubSub.publish('switchType',type)
+    },
+
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
