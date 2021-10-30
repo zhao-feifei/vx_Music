@@ -36,11 +36,9 @@ Page({
 
     //跳转至歌曲详情的回调
     toSongDetail(event){
-        let song=event.currentTarget.dataset.song
-        console.log(song);
-        wx.navigateTo({
-            //注意这里为啥要转换成json
-          url: '/pages/songDetail/songDetail?song='+JSON.stringify(song),
+        let musicId=event.currentTarget.dataset.id 
+        wx.navigateTo({           
+          url: '/pages/songDetail/songDetail?musicId='+musicId,
         })
     },
 

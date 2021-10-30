@@ -1,18 +1,20 @@
-// pages/songDetail/songDetail.js
+import request from '../../utils/request'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        isPlay:false //标识是否播放
+        isPlay:false, //标识是否播放
+        song:{} //歌曲详情对象
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(options);
+        let musicId=options.musicId
+       this.getmusicInfo(musicId)
     },
 
 
@@ -22,6 +24,20 @@ Page({
        this.setData({
            isPlay
        })
+    },
+
+
+    //根据传过来的id获取音乐详情
+  async  getmusicInfo(musicId){
+     let songData= await  request('/song/detail',{ids:musicId})
+     console.log(songData);
+     this.setData({
+         song:songData.songs[0]
+     })
+     //动态修改窗口标题
+     wx.setNavigationBarTitle({
+       title: this.data.song.name,
+     })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

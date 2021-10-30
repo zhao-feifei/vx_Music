@@ -1,11 +1,11 @@
 <view class="songContainer">
-    <view class="author">beyond</view>
+    <view class="author">{{song.ar[0].name}}</view>
     <view class="circle"></view>
     <image class="needle {{isPlay&&'needloRotate'}}" src="/static/images/song/needle.png"></image>
     <view class="discContainer {{isPlay&&'disAnimation'}}">
         <image class="disc" src="/static/images/song/disc.png"></image>
         <!-- 歌曲封面图 -->
-        <image class="musicImg" src="../../static/images/mv.jpg"></image>
+        <image class="musicImg" src="{{song.al.picUrl}}"></image>
     </view>
     <!-- 底部控制播放区域 -->
   <view class="musicControl">
