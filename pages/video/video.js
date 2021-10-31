@@ -35,7 +35,7 @@ Page({
         let videoListData = await request('/video/group', {
             id: navId
         })
-        // console.log(videoListData);
+        console.log(videoListData);
 
         //为数组每一项增加一个索引值，方便后面遍历作为key值
         let index = 0
