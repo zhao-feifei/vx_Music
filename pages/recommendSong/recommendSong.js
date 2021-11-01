@@ -9,7 +9,8 @@ Page({
     data: {
         day: '',
         month: '',
-        recommedList: [] //推荐歌曲列表
+        recommedList: [], //推荐歌曲列表
+        index:0 //点击的歌曲下标  暂时存起来方便前后切换歌曲
     },
 
     /**
@@ -22,15 +23,26 @@ Page({
             month: new Date().getMonth() + 1
         })
         this.getRecommendList()
+        console.log(this.data.recommedList);
         //订阅songDetail发布的type消息
-        PubSub.subscribe('switchType', (msg, data) => {
-            console.log('来自songdetail页面发布的消息', msg, data);
+        PubSub.subscribe('switchType', (msg, switchType) => {
+            let {recommedList,index}=this.data
+            if(switchType==='pre'){ //点击了上一首
+                index-=1
+            }else{
+                index+=1
+            }
+            console.log(recommedList);
+            let musicId=recommedList[index].id
+            //将切换后的musicId发送给songDetail页面
+            PubSub.publish('musicId',musicId)
         })
     },
 
     //获取每日推荐的功能函数
     async getRecommendList() {
         let recommendListData = await request('/recommend/songs')
+        console.log(recommendListData);
         // 更新数据
         this.setData({
             recommendList: recommendListData.recommend
@@ -40,9 +52,13 @@ Page({
 
     //跳转至歌曲详情的回调
     toSongDetail(event) {
-        let musicId = event.currentTarget.dataset.id
+        // console.log(event.currentTarget.dataset);
+        let {id,index }= event.currentTarget.dataset
+        this.setData({
+            index
+        })
         wx.navigateTo({
-            url: '/pages/songDetail/songDetail?musicId=' + musicId,
+            url: '/pages/songDetail/songDetail?musicId=' + id,
         })
     },
 

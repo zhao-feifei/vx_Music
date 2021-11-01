@@ -1,6 +1,6 @@
 import request from '../../utils/request'
 import PubSub from 'pubsub-js'
-let appInstance=getApp()
+let appInstance = getApp()
 Page({
 
     /**
@@ -24,13 +24,17 @@ Page({
         this.getmusicInfo(musicId)
 
         //判断当前页面的音乐是否在播放
-        if(appInstance.globalData.isMusicPlay&&appInstance.globalData.musicId===musicId){
+        if (appInstance.globalData.isMusicPlay && appInstance.globalData.musicId === musicId) {
             //音乐在播放,修改播放状态为true
             this.setData({
-                isPlay:true
+                isPlay: true
             })
-
         }
+
+        //订阅recommendSong页面发布的消息 ： musicId
+        PubSub.subscribe('musicId', (msg, musicId) => {
+            console.log('来自recommend页面的消息', musicId);
+        })
     },
 
 
@@ -49,23 +53,23 @@ Page({
 
     //控制音乐的播放与暂停
     async musicControl(isPlay, musicId) {
-          //生成背景音频实例
-          let backgroundAudioManager=wx.getBackgroundAudioManager()
+        //生成背景音频实例
+        let backgroundAudioManager = wx.getBackgroundAudioManager()
         if (isPlay) {
             // 获取音乐播放地址
             let musicLinkData = await request('/song/url', {
                 id: musicId
             })
-            let musicLink=musicLinkData.data[0].url
-            backgroundAudioManager.src=musicLink
-            backgroundAudioManager.title=this.data.song.name
+            let musicLink = musicLinkData.data[0].url
+            backgroundAudioManager.src = musicLink
+            backgroundAudioManager.title = this.data.song.name
             //修改全局的播放状态
-            appInstance.globalData.isMusicPlay=true
-            appInstance.globalData.musicId=musicId
+            appInstance.globalData.isMusicPlay = true
+            appInstance.globalData.musicId = musicId
         } else {
             backgroundAudioManager.pause()
-             //修改全局的播放状态
-             appInstance.globalData.isMusicPlay=false
+            //修改全局的播放状态
+            appInstance.globalData.isMusicPlay = false
 
         }
     },
@@ -85,10 +89,10 @@ Page({
     },
 
     //点击切换歌曲的回调
-    handleSwitch(event){
-        let type=event.currentTarget.id
+    handleSwitch(event) {
+        let type = event.currentTarget.id
         //使用发布订阅将点击切换的类型发给recommend页面
-        PubSub.publish('switchType',type)
+        PubSub.publish('switchType', type)
     },
 
 
