@@ -90,6 +90,7 @@ Page({
 
     //点击切换歌曲的回调
     handleSwitch(event) {
+        //获取切换歌曲的类型
         let type = event.currentTarget.id
         //使用发布订阅将点击切换的类型发给recommend页面
         PubSub.publish('switchType', type)
