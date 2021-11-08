@@ -28,8 +28,11 @@ Page({
         PubSub.subscribe('switchType', (msg, switchType) => {
             let {recommendList,index}=this.data
             if(switchType==='pre'){ //点击了上一首
+                //这是处理的是播放歌曲边界问题
+                (index===0)&&(index=recommendList.length)
                 index-=1
             }else{
+                (index===recommendList.length-1)&&(index=-1)
                 index+=1
             }
             console.log(recommendList);

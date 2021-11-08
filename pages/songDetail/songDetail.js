@@ -37,6 +37,9 @@ Page({
             // console.log('来自recommend页面的消息', musicId);
             //获取最新的音乐详情
             this.getmusicInfo(musicId)
+
+            //自动播放当前音乐
+            this.musicControl(true,musicId)
         })
      
     },
