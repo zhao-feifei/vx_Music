@@ -31,10 +31,14 @@ Page({
             })
         }
 
-        //订阅recommendSong页面发布的消息 ： musicId
-        PubSub.subscribe('musicId', (msg, musicId) => {
-            console.log('来自recommend页面的消息', musicId);
+
+           //订阅recommendSong页面发布的消息 ： musicId
+           PubSub.subscribe('musicId', (msg, musicId) => {
+            // console.log('来自recommend页面的消息', musicId);
+            //获取最新的音乐详情
+            this.getmusicInfo(musicId)
         })
+     
     },
 
 
@@ -92,6 +96,8 @@ Page({
     handleSwitch(event) {
         //获取切换歌曲的类型
         let type = event.currentTarget.id
+
+      
         //使用发布订阅将点击切换的类型发给recommend页面
         PubSub.publish('switchType', type)
     },

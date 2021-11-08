@@ -9,7 +9,7 @@ Page({
     data: {
         day: '',
         month: '',
-        recommedList: [], //推荐歌曲列表
+        recommendList: [], //推荐歌曲列表
         index:0 //点击的歌曲下标  暂时存起来方便前后切换歌曲
     },
 
@@ -23,17 +23,23 @@ Page({
             month: new Date().getMonth() + 1
         })
         this.getRecommendList()
-        console.log(this.data.recommedList);
+        console.log(this.data.recommendList);
         //订阅songDetail发布的type消息
         PubSub.subscribe('switchType', (msg, switchType) => {
-            let {recommedList,index}=this.data
+            let {recommendList,index}=this.data
             if(switchType==='pre'){ //点击了上一首
                 index-=1
             }else{
                 index+=1
             }
-            console.log(recommedList);
-            let musicId=recommedList[index].id
+            console.log(recommendList);
+            let musicId=recommendList[index].id
+
+            //更新index状态
+            this.setData({
+                index
+            })
+
             //将切换后的musicId发送给songDetail页面
             PubSub.publish('musicId',musicId)
         })
